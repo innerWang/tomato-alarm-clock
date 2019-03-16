@@ -1,0 +1,13 @@
+#todos {
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+  #todoList {
+    #todoItem {
+      padding: 4px 0;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+#home{
+  max-width: 1000px;
+  margin: auto;
+  //margin padding 设置为4的倍数，方便管理
+  >header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+}
