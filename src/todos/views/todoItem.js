@@ -32,14 +32,6 @@ class TodoItem extends Component {
     this.props.editTodo(this.props.id)
   }
 
-
-  inputKeyup = (e) => {
-    // enter
-    if(e.keyCode === 13 && this.state.text !== ''){
-      this.updateTodo({description: this.state.text})
-    }
-  }
-
   clickEnter = ()=>{
     if(this.state.text !== ''){
       // 有数据 更新
@@ -58,22 +50,25 @@ class TodoItem extends Component {
     const itemClass = classNames({
       'todoItem': true,
       'editEnable':this.props.editEnable,
-      'completed': this.props.completed
+      'completed': this.props.completed,
+      'deleted': this.props.deleted
     });
 
-    const EditInput = (
+    const {TextArea} = Input;
+    const TextEdit = (
       <div className="editing">
-        <Input value={this.state.text} 
-               onChange={e => this.setState({text: e.target.value})} 
-               onKeyUp= {this.inputKeyup}
-               placeholder="按回车键删除此任务"
-               className="inputBox"/>
+        <TextArea placeholder="按回车键删除此任务" 
+                value={this.state.text} 
+                className="inputBox"
+                onChange={e => this.setState({text: e.target.value})}
+                autosize={{ minRows: 1, maxRows: 6 }}
+                />
         <div className="iconWrapper">
-          <Icon type="enter" onClick={this.clickEnter}/> 
+          <Icon type="enter"  class="enter" onClick={this.clickEnter}/> 
           <Icon type="delete" theme="filled" onClick={this.deleteItem}/>
         </div>
-      </div> 
-    );
+      </div>
+    )
 
     const Text = (
         <div className="text" onDoubleClick= {this.doubleClickText}> {this.state.text} </div>
@@ -81,9 +76,8 @@ class TodoItem extends Component {
 
     return (
       <div id="todoItem" className={itemClass}>
-        <Checkbox checked = {this.props.completed} onChange = {this.toggle } />
-        {this.props.editEnable ? EditInput : Text } 
-        {/* <Input value={this.state.text} onChange={e => this.setState({text: e.target.value})} /> */}
+        <Checkbox checked = {this.props.completed} onChange = {this.toggle } className="checkBox"/>
+        {this.props.editEnable ? TextEdit : Text }  
       </div>
     )
   }

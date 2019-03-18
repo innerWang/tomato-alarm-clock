@@ -23,10 +23,23 @@ class TodoList extends Component {
     }
   }
 
+  get unDeletedTodos(){
+    return this.props.todoItems.filter( t => !t.deleted)
+  }
+
+  get unCompletedTodos(){
+    return this.unDeletedTodos.filter( t=> !t.completed)
+  }
+
+  get completedTodos(){
+    return this.unDeletedTodos.filter( t=> t.completed)
+  }
+
   render(){
     return (
       <div id='todoList'>
-         {  this.props.todoItems.map( t => <TodoItem key={t.id}  {...t} /> )}  
+         {  this.unCompletedTodos.map( t => <TodoItem key={t.id}  {...t} /> )}  
+         {  this.completedTodos.map( t => <TodoItem key={t.id}  {...t} /> )}  
         <div>已完成</div>
       </div>
     )

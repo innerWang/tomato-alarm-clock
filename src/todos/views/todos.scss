@@ -1,32 +1,70 @@
 #todos {
   margin: 8px;
   padding: 8px;
+  width: calc(50% - 8px);
   border: 1px solid #ddd;
   border-radius: 4px;
-
   #todoList {
+    margin-top: 16px;
+
     #todoItem {
-      padding: 4px 0;
+      position: relative;
+      padding: 4px 0 ;
       border-bottom: 1px solid #ddd;
-      display: flex;
-      align-items: center;
-      >.text{
-        flex: 1;
+      line-height: 24px;
+      transition: .1s all;
+      &.completed{
+        text-decoration: line-through;
+      }
+      &:hover{
+        background: #f9f9f9;
+      }
+      &.editEnable{
+        background: #fff3d2;
+      }
+
+      &.deleted{
+        color: red;
+      }
+      &:first-child{
+        border-top: 1px solid #ddd;
+      }
+
+      >.checkBox{
+        position: absolute;
+        top:4px;
+        left:2px;
+        z-index: 1;
       }
 
       >.editing{
-        flex: 1;
-        display: flex;
-        align-items: center;
-        >.inputBox {
+        padding: 0 24px 0 12px;
+        .inputBox{
+          padding: 0 12px;
+          border: none;
+          box-shadow: none;
           outline: none;
-          border: 0;
-          padding: 0;
+          resize: none;
+          background: transparent;
         }
         >.iconWrapper{
-          margin-left: 4px;
+          position: absolute;
+          top: 8px;
+          right: 2px;
+          width: 32px;
+          display: flex;
+          justify-content: space-between;
         }
       }
+
+      >.text {
+        padding: 0 28px 0 24px;
+        word-wrap: break-word; 
+      }
+      
+
+      
+      
 
     }
   }
