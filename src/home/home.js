@@ -5,6 +5,7 @@ import history from '../config/history.js';
 import './home.scss';
 //import InfoModal from '../personalInfo/info.js';
 import {Todos} from '../todos/';
+import {TomatoClock} from '../tomatos/';
 
 
 const  showModal = () => {
@@ -71,6 +72,7 @@ class Home extends Component{
           <ComboBox name= {this.state.user && this.state.user.account}/>
         </header>
         <main>
+          <TomatoClock/>
           <Todos />
         </main>
       </div>

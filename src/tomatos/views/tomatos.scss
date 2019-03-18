@@ -1,0 +1,13 @@
+#tomatos{
+  margin: 8px;
+  padding: 8px;
+  width: calc(50% - 8px);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+  .HandleClock{
+    .clock {
+      width: 100%;
+    }
+  }
+}

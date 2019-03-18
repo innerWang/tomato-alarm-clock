@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { Checkbox,Input, Icon } from 'antd';
+import { Checkbox,Input, Icon,Tooltip  } from 'antd';
 import { modifyTodo,editTodoEnable} from '../actions.js';
 import axios from '../../config/axios.js';
 
@@ -74,7 +74,8 @@ class TodoItem extends Component {
                 />
         <div className="iconWrapper">
           <Icon type="enter"  className="enter" onClick={this.clickEnter}/> 
-          <Icon type="delete" theme="filled" onClick={this.deleteItem}/>
+          <Tooltip title="删除任务"><Icon type="delete" theme="filled" onClick={this.deleteItem}/></Tooltip>
+          
         </div>
       </div>
     )
