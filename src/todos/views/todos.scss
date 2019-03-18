@@ -8,6 +8,26 @@
     #todoItem {
       padding: 4px 0;
       border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      >.text{
+        flex: 1;
+      }
+
+      >.editing{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        >.inputBox {
+          outline: none;
+          border: 0;
+          padding: 0;
+        }
+        >.iconWrapper{
+          margin-left: 4px;
+        }
+      }
+
     }
   }
 }

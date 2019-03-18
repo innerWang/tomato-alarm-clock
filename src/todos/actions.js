@@ -22,13 +22,11 @@ export const removeTodo = (id)=>({
 
 export const  editTodoEnable = (id)=>({
   type: ActionTypes.ENABLE_EDIT_TODO,
-  id,
-  editEnable:true
+  id
 })
 
-export const modifyTodo = (id,description) => ({
+export const modifyTodo = (item) => ({
   type: ActionTypes.MODIFY_TODO,
-  id,
-  description
+  item
 })
 
