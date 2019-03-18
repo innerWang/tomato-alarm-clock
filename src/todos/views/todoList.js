@@ -38,8 +38,8 @@ class TodoList extends Component {
   render(){
     return (
       <div id='todoList'>
-         {  this.unCompletedTodos.map( t => <TodoItem key={t.id}  {...t} /> )}  
-         {  this.completedTodos.map( t => <TodoItem key={t.id}  {...t} /> )}  
+        {  this.unCompletedTodos.map( t => <TodoItem key={t.id}  {...t} /> )}  
+        {  this.completedTodos.map( t => <TodoItem key={t.id}  {...t} /> )}  
         <div>已完成</div>
       </div>
     )

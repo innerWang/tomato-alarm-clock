@@ -42,6 +42,14 @@ class TodoItem extends Component {
     }
   }
 
+  keyDown = (e)=>{
+    if(e.keyCode === 13){
+      console.log('press enter....')
+      e.preventDefault();
+      this.clickEnter();
+    }
+  }
+
   deleteItem = ()=>{
     this.updateTodo({deleted: true})
   }
@@ -57,14 +65,15 @@ class TodoItem extends Component {
     const {TextArea} = Input;
     const TextEdit = (
       <div className="editing">
-        <TextArea placeholder="按回车键删除此任务" 
+        <TextArea placeholder="点击回车删除此任务" 
                 value={this.state.text} 
                 className="inputBox"
+                onKeyDown = {this.keyDown}
                 onChange={e => this.setState({text: e.target.value})}
                 autosize={{ minRows: 1, maxRows: 6 }}
                 />
         <div className="iconWrapper">
-          <Icon type="enter"  class="enter" onClick={this.clickEnter}/> 
+          <Icon type="enter"  className="enter" onClick={this.clickEnter}/> 
           <Icon type="delete" theme="filled" onClick={this.deleteItem}/>
         </div>
       </div>
