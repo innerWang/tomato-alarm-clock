@@ -20,7 +20,7 @@ const reducer = (state=[],action) => {
         if(action.id === item.id){
           return {...item,editEnable:true};
         }else{
-          return item;
+          return {...item,editEnable:false};
         }
       })
     default: 
