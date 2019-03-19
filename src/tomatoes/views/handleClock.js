@@ -1,9 +1,8 @@
 import React ,{Component} from 'react';
 import {Button } from 'antd';
 import axios from '../../config/axios.js';
-import  './tomatos.scss';
 
-class TomatoClock extends Component{
+class HandleClock extends Component {
 
   startClock = async ()=>{
     try {
@@ -16,13 +15,11 @@ class TomatoClock extends Component{
 
   render(){
     return (
-      <div id="tomatos">
-        <div className="HandleClock">
-          <Button className="clock" onClick={this.startClock}>开始番茄</Button>
-        </div>
+      <div className="HandleClock">
+        <Button className="clock" onClick={this.startClock}>开始番茄</Button>
       </div>
-    )
+    );
   }
 }
 
-export default TomatoClock;
+export default  HandleClock; 

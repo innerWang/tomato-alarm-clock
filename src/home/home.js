@@ -3,42 +3,9 @@ import {Dropdown,Icon,Menu } from 'antd';
 import axios from '../config/axios.js';
 import history from '../config/history.js';
 import './home.scss';
-//import InfoModal from '../personalInfo/info.js';
+import InfoModal from '../personalInfo/info.js';
 import {Todos} from '../todos/';
-import {TomatoClock} from '../tomatos/';
-
-
-const  showModal = () => {
-  console.log('show modal...')
-  return (
-     <div>
-       {/* <InfoModal/> */}
-     </div>
-  )
-}
-
-const  logout = ()=>{
-  localStorage.setItem('x-token','')
-  history.push('/login')
-}
-
-const menu = (
-  <Menu >
-    <Menu.Item key="1" onClick={showModal}><Icon type="user" />个人信息</Menu.Item>
-    <Menu.Item key="2" onClick={logout}><Icon type="logout" />注销</Menu.Item>
-  </Menu>
-);
-
-const ComboBox =(props)=>{
-  return (
-    <Dropdown overlay={menu}>
-      <span style={{ marginLeft: 12 }}>
-        {props.name} <Icon type="down" />
-      </span>
-   </Dropdown>
-  )
-}
-  
+import {TomatoClock} from '../tomatoes/';
 
 
 class Home extends Component{
@@ -46,7 +13,8 @@ class Home extends Component{
   constructor(props){
     super(props)
     this.state = {
-      user: {}
+      user: {},
+      showModal: false
     }
   }
 
@@ -63,13 +31,37 @@ class Home extends Component{
     }
   }
 
+  showModal = ()=>{
+    this.setState({showModal:true})
+  }
+
+  logout = ()=>{
+    localStorage.setItem('x-token','')
+    history.push('/login')
+  }
 
   render() {
+    const menu = (
+      <Menu >
+        <Menu.Item key="1" onClick={this.showModal}><Icon type="user" />个人信息</Menu.Item>
+        <Menu.Item key="2" onClick={this.logout}><Icon type="logout" />注销</Menu.Item>
+      </Menu>
+    );
+    
+    const ComboBox = (
+      <Dropdown overlay={menu}>
+        <span style={{ marginLeft: 12 }}>
+          {this.state.user && this.state.user.account} <Icon type="down" />
+        </span>
+      </Dropdown>
+    );
+
     return (
       <div id="home">
         <header>
           <span className="logo">番茄闹钟</span>
-          <ComboBox name= {this.state.user && this.state.user.account}/>
+          {ComboBox }
+          <InfoModal show={this.state.showModal}/>
         </header>
         <main>
           <TomatoClock/>

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import {Button,Modal } from 'antd';
-
-
+import {Modal } from 'antd';
 
 class InfoModal extends Component{
   constructor(props){
     super(props);
     this.state = {
-      visible :true
+      visible :this.props.show
     }
   }
 
@@ -15,6 +13,10 @@ class InfoModal extends Component{
     this.setState({
       visible: false,
     });
+  }
+
+  componentWillReceiveProps(){
+    this.setState({visible:this.props.show})
   }
 
   render(){

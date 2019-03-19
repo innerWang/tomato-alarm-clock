@@ -2,6 +2,8 @@
 
 2. 使用 axios 库，发送ajax请求
 
+[axios](https://github.com/axios/axios)
+
 3. 使用 classnames 库 ，提供动态css样式功能
 
 ```js
