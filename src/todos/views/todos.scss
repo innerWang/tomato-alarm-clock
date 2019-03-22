@@ -16,9 +16,6 @@
   &.deleted{
     color: red;
   }
-  &:first-child{
-    border-top: 1px solid #ddd;
-  }
 
   >.checkBox{
     position: absolute;
@@ -63,6 +60,7 @@
   border-radius: 4px;
   #todoList {
     margin-top: 16px;
+    border-top: 1px solid #ddd;
 
     #uncompletedList{
       #todoItem {
@@ -83,6 +81,7 @@
     
 
     #completedList {
+      border-top: 1px solid #ddd;
       display: none;
       &.show{
         display: block;

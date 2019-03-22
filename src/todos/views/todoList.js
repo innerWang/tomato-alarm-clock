@@ -79,7 +79,7 @@ class TodoList extends Component {
 
 
 const mapStateToProps = (state)=>({
-  todoItems: state
+  todoItems: state.todos
 })
 
 

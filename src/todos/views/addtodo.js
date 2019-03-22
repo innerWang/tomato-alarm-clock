@@ -38,7 +38,7 @@ class AddTodo extends Component{
     return (
       <div id="addtodo">
         <Input
-          placeholder="add new todo"
+          placeholder="添加新任务"
           suffix={suffix}
           value={description}
           onChange={(e)=>this.setState({ description: e.target.value })}

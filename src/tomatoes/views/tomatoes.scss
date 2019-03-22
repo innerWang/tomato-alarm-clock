@@ -1,13 +1,70 @@
+$border-color: #ddd;
+
 #tomatoes{
   margin: 8px;
   padding: 8px;
   width: calc(50% - 8px);
-  border: 1px solid #ddd;
+  border: 1px solid $border-color;
   border-radius: 4px;
 
-  .HandleClock{
-    .clock {
+  .handleTomato{
+    .startClock {
       width: 100%;
+      font-weight: bold;
+      &:hover,:focus{
+        color: inherit;
+      }
+    }
+
+    .countDown{
+      position: relative;
+      padding: 4px 0;
+      font-size: 14px;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      text-align: center;
+      .closeIcon{
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%,-50%);
+        background: #fff;
+        cursor: pointer;
+      }
+    }
+
+    .text{
+      outline: none;
+      border-color: $border-color;
+      box-shadow: none;
     }
   }
+
+  #tomatoList{
+    margin-top: 16px;
+    border-top: 1px solid $border-color;
+
+    .tomatoItem{
+      padding: 4px 0;
+      .tomatoItemHeader{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .constText{
+          font-size: 12px;
+        }
+      }
+      .tomatoItemDetail{
+        display: flex;
+        align-items: center;
+        .period{
+          margin-right: 8px;
+        }
+        .jobDetail{
+          color: #000;
+        }
+      }
+    }
+  }
+
 }

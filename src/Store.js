@@ -1,5 +1,11 @@
-import {createStore} from 'redux';
+import {createStore,combineReducers} from 'redux';
 
-import {reducer} from './todos';
+import {reducer as todoReducer} from './todos';
+import {reducer as tomatoReducer} from './tomatoes';
 
-export default createStore(reducer);
+const reducers = combineReducers({
+  todos: todoReducer,
+  tomatoes: tomatoReducer
+})
+
+export default createStore(reducers);
