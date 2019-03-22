@@ -8,8 +8,8 @@ const reducer = (state=[],action)=>{
       return [action.tomato,...state];
     case ActionTypes.UPDATE_TOMATO:
       return state.map( t=>{
-        if(t.id === action.item.id){
-          return action.item;
+        if(t.id === action.tomato.id){
+          return action.tomato;
         }else{
           return t;
         }

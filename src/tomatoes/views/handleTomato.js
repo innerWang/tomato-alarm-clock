@@ -23,19 +23,20 @@ class HandleTomato extends Component {
     }
   }
 
-  updateTomatoDetail = async (param)=>{
-    try {
-      const res = await axios.patch(`tomatoes/${this.props.unfinishedTomato.id}`,param)
+  updateTomatoDetail = (param)=>{
+    axios.patch(`tomatoes/${this.props.unfinishedTomato.id}`,param).then((res)=>{
       this.props.updateTomato(res.data.resource)
-    } catch (e) {
+      console.log(res.data.resource)
+    }).catch((e)=>{
+      console.log('err')
       throw new Error(e)
-    }
+    })
   }
 
 
   abortTomato =  ()=> {
     this.updateTomatoDetail({aborted: true})
-    document.title = '番茄闹钟';
+    // document.title = '番茄闹钟';
   }
 
   onFinish = ()=>{
@@ -49,11 +50,11 @@ class HandleTomato extends Component {
       title: '您目前正在一个番茄工作时间中，要放弃这个番茄吗？',
       okText: '确定',
       cancelText: '取消',
-      onOk() {
+      onOk:()=> {
         console.log('click ok');
         this.abortTomato();
       },
-      onCancel() {
+      onCancel:()=> {
         console.log('click Cancel');
       },
     });

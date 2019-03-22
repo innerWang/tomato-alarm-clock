@@ -28,7 +28,7 @@ class TomatoClock extends Component{
   }
 
   get finishedTomatoes(){
-    return this.props.tomatoes.filter( t => t.description && t.ended_at);
+    return this.props.tomatoes.filter( t => t.description && t.ended_at && !t.aborted);
   }
 
   startClock = async ()=>{

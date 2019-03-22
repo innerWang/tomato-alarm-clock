@@ -33,7 +33,7 @@ class CountDown extends React.Component{
         this.setState({curtime: 0})
         clearInterval(timerId)
         this.props.finish();
-        document.title = '番茄闹钟';
+      //  document.title = '番茄闹钟';
       }
     },1000)
   }
@@ -43,7 +43,7 @@ class CountDown extends React.Component{
   }
 
   componentDidUpdate(){
-    document.title = `${this.time}-番茄闹钟`;
+    //document.title = `${this.time}-番茄闹钟`;
   }
 
   render(){
