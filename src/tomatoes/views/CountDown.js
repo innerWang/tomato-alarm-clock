@@ -1,6 +1,5 @@
-import React ,{useState,useEffect} from 'react';
-import { Icon,Modal } from 'antd';
-import { timer } from 'rxjs';
+import React from 'react';
+import { Icon } from 'antd';
 
 
 const formatTime= (seconds)=>{
@@ -20,8 +19,11 @@ class CountDown extends React.Component{
     super(props)
     this.state={
       curtime : this.props.originTime,
-      visible : false
     }
+  }
+
+  get time(){
+    return formatTime(this.state.curtime)
   }
 
   componentWillMount(){
@@ -30,6 +32,8 @@ class CountDown extends React.Component{
       if( this.state.curtime < 0){
         this.setState({curtime: 0})
         clearInterval(timerId)
+        this.props.finish();
+        document.title = '番茄闹钟';
       }
     },1000)
   }
@@ -38,33 +42,15 @@ class CountDown extends React.Component{
     clearInterval(timerId)
   }
 
-  clickCloseButton = ()=>{
-    console.log('click close..')
-    this.setState({visible:true})
-  }
-
-  handleCancel = () => {
-    this.setState({visible: false});
-  }
-
-  handleOK = ()=>{
-    console.log('click abort tomato')
-    this.setState({visible: false});
-    this.props.abort();
+  componentDidUpdate(){
+    document.title = `${this.time}-番茄闹钟`;
   }
 
   render(){
-    const time = formatTime(this.state.curtime)
     return (
       <div className="countDown">
-        {time}
-        <Icon type="close-circle" className="closeIcon" onClick={this.clickCloseButton}/>
-        <Modal
-          visible={this.state.visible}
-          onCancel={this.handleCancel}
-          onOk ={this.handleOK}>
-          <p>您目前正在一个番茄工作时间中，要放弃这个番茄吗？</p>
-        </Modal> 
+        {this.time}
+        <Icon type="close-circle" className="closeIcon" onClick={this.props.confirm}/>
       </div>
     )
   }

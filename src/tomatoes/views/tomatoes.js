@@ -22,8 +22,9 @@ class TomatoClock extends Component{
     }
   }
 
+
   get firstUnFinishedTomato(){
-    return  this.props.tomatoes.filter( t => !t.description && !t.ended_at)[0];
+    return  this.props.tomatoes.filter( t => !t.description && !t.ended_at && !t.aborted)[0];
   }
 
   get finishedTomatoes(){

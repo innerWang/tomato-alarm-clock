@@ -1,5 +1,5 @@
 import React ,{Component} from 'react';
-import {Button, Input } from 'antd';
+import {Button, Input,Modal,Icon } from 'antd';
 import axios from '../../config/axios.js';
 import CountDown from './CountDown.js';
 
@@ -15,42 +15,49 @@ class HandleTomato extends Component {
   keyUp = (e)=>{
     if(e.keyCode === 13 && this.state.description !== ''){
       console.log('submit input context')
-      this.addDiscription()
-    }
-  }
-
-  addDiscription = async ()=>{
-    try {
-      const res = await axios.patch(`tomatoes/${this.props.unfinishedTomato.id}`,{
+      this.updateTomatoDetail({
         description: this.state.description,
         ended_at: new Date()
       })
       this.setState({description:''})
-      this.props.updateTomato(res.data.resource)
-    } catch (e) {
-      throw new Error(e)
     }
   }
 
-  abortTomato = async ()=> {
+  updateTomatoDetail = async (param)=>{
     try {
-      const res = await axios.patch(`tomatoes/${this.props.unfinishedTomato.id}`,{
-        aborted: true
-      })
+      const res = await axios.patch(`tomatoes/${this.props.unfinishedTomato.id}`,param)
       this.props.updateTomato(res.data.resource)
     } catch (e) {
       throw new Error(e)
     }
   }
 
-  
-  // render(){
-  //   return (
-  //     <div className="handleTomato">
-  //       <CountDown originTime={20}/>
-  //     </div>
-  //   )
-  // }
+
+  abortTomato =  ()=> {
+    this.updateTomatoDetail({aborted: true})
+    document.title = '番茄闹钟';
+  }
+
+  onFinish = ()=>{
+    // 强制更新，重新渲染 ，否则state和props都没改变，不会渲染
+    this.forceUpdate()
+  }
+
+  showConfirm= ()=> {
+    const confirm = Modal.confirm;
+    confirm({
+      title: '您目前正在一个番茄工作时间中，要放弃这个番茄吗？',
+      okText: '确定',
+      cancelText: '取消',
+      onOk() {
+        console.log('click ok');
+        this.abortTomato();
+      },
+      onCancel() {
+        console.log('click Cancel');
+      },
+    });
+  }
 
   render(){
     let tpl = <div />
@@ -61,17 +68,24 @@ class HandleTomato extends Component {
       const timeNow = new Date().getTime()
       if(timeNow - Date.parse(started_at) > duration) {
         tpl = (
-          <Input value={this.state.description}
+          <div className="inputWrap">
+            <Input value={this.state.description}
                  onChange= {e => this.setState({description: e.target.value})}
                  onKeyUp = {this.keyUp}
                  placeholder="你刚刚完成了什么工作？"
                  className="text"
                  />
+             <Icon type="close-circle" className="closeIcon" onClick={this.showConfirm}/>
+          </div>
+          
         )
       }else{
         const time = Math.floor((duration - (timeNow - Date.parse(started_at))) /1000);
         tpl=(
-          <CountDown originTime={time} abort={this.abortTomato}/>
+          <CountDown originTime={time}
+                     finish={this.onFinish} 
+                     confirm={this.showConfirm}
+                     />
         )
       } 
     }
