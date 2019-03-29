@@ -45,9 +45,11 @@ class CountDown extends React.Component{
   }
 
   render(){
+    const percent = (this.state.curtime/this.props.duration*100)+'%' ;
     return (
       <div className="countDown">
-        {this.time}
+        <div className="timeText">{this.time}</div>
+        <div className="progress" style={{right: percent}}></div>
         <Icon type="close-circle" className="closeIcon" onClick={this.props.confirm}/>
       </div>
     )

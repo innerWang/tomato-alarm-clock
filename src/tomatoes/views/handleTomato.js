@@ -86,6 +86,7 @@ class HandleTomato extends Component {
           <CountDown originTime={time}
                      finish={this.onFinish} 
                      confirm={this.showConfirm}
+                     duration={duration/1000}
                      />
         )
       } 

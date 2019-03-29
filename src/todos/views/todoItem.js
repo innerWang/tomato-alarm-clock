@@ -15,8 +15,10 @@ class TodoItem extends Component {
   }
 
   updateTodo = async (param={})=>{
+    param.completed_at =  param.completed ? new Date() : null;
     try{
       const res = await axios.patch(`todos/${this.props.id}`,param);
+      console.log(res.data.resource)
       this.props.update(Object.assign({},res.data.resource,{editEnable:false}))
     }catch(e){
       throw new Error(e)
