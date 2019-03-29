@@ -2,7 +2,7 @@ import React ,{Component} from 'react';
 import {connect} from 'react-redux';
 import axios from '../../config/axios.js';
 import HandleTomato from './handleTomato.js';
-import  {initTomatoes,addTomato,updateTomato} from '../actions.js';
+import  {addTomato,updateTomato} from '../actions.js';
 import TomatoList from './tomatoList.js';
 import _ from 'lodash';
 import {format,addDays} from 'date-fns';
@@ -10,20 +10,6 @@ import {format,addDays} from 'date-fns';
 import  './tomatoes.scss';
 
 class TomatoClock extends Component{
-
-  componentDidMount(){
-    this.getTomatoList()
-  }
-
-  getTomatoList = async ()=>{
-    try {
-      const res = await axios.get('tomatoes')
-      this.props.initTomatoes(res.data.resources)
-    } catch (e) {
-      throw new Error(e)
-    }
-  }
-
 
   get firstUnFinishedTomato(){
     return  this.props.tomatoes.filter( t => !t.description && !t.ended_at && !t.aborted)[0];
@@ -70,7 +56,6 @@ const mapStateToProps = (state) =>({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initTomatoes: (tomatoes)=> dispatch(initTomatoes(tomatoes)),
     addTomato: (tomato={}) => dispatch(addTomato(tomato)),
     updateTomato: (tomato={}) => dispatch(updateTomato(tomato)),
   }

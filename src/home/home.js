@@ -6,6 +6,10 @@ import './home.scss';
 import InfoModal from '../personalInfo/info.js';
 import {Todos} from '../todos/';
 import {TomatoClock} from '../tomatoes/';
+import DataStatistics from '../dataStatistics/statistics.js';
+import {initTodos} from '../todos/actions.js';
+import {initTomatoes} from '../tomatoes/actions.js';
+import {connect} from 'react-redux';
 
 
 class Home extends Component{
@@ -20,6 +24,27 @@ class Home extends Component{
 
   async componentWillMount(){
     await this.getInfo()
+    await this.getTodos()
+    await this.getTomatoList()
+  }
+
+  getTomatoList = async ()=>{
+    try {
+      const res = await axios.get('tomatoes')
+      this.props.initTomatoes(res.data.resources)
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  getTodos = async ()=>{
+    try{
+      const res = await axios.get('todos');
+      const items = res.data.resources.map( t => Object.assign({},t,{editEnable:false}))
+      this.props.initTodos(items)
+    }catch(e){
+      throw new Error(e)
+    }
   }
 
   getInfo = async ()=>{
@@ -67,9 +92,23 @@ class Home extends Component{
           <TomatoClock/>
           <Todos />
         </main>
+        <DataStatistics />
       </div>
     );
   }
 }
 
-export default Home;
+
+const mapStateToProps = (state) =>{
+  return {
+    todos: state.todos,
+    tomatoes: state.tomatoes
+  }
+}
+
+const mapDispatchToProps = {
+  initTodos,
+  initTomatoes
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
