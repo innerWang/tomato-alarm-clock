@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import axios from '../../config/axios.js';
 import HandleTomato from './handleTomato.js';
 import  {initTomatoes,addTomato,updateTomato} from '../actions.js';
-import TomatoItem from './tomatoItem.js';
+import TomatoList from './tomatoList.js';
+import _ from 'lodash';
+import {format,addDays} from 'date-fns';
 
 import  './tomatoes.scss';
 
@@ -28,7 +30,15 @@ class TomatoClock extends Component{
   }
 
   get finishedTomatoes(){
-    return this.props.tomatoes.filter( t => t.description && t.ended_at && !t.aborted);
+    const limitTime = Date.parse(addDays(new Date(),-7));
+    // 只使用7天内完成的tomatoes
+    const finishedTomatoes =  this.props.tomatoes.filter( t => 
+      t.description && t.ended_at && !t.aborted && ( Date.parse(t.started_at) > limitTime )
+    );
+    const obj = _.groupBy(finishedTomatoes,(tomato)=>{
+      return format(new Date(tomato.started_at), 'YYYY-MM-DD')
+    })
+    return obj
   }
 
   startClock = async ()=>{
@@ -46,9 +56,7 @@ class TomatoClock extends Component{
         <HandleTomato unfinishedTomato={this.firstUnFinishedTomato}
                       startTomato={this.startClock}
                       updateTomato={this.props.updateTomato}/>
-        <div id="tomatoList">
-          {this.finishedTomatoes.map( t => <TomatoItem key={t.id} {...t}/> )}
-        </div>
+        <TomatoList finishedTomatoes={this.finishedTomatoes}/>
       </div>
     )
   }

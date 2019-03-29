@@ -50,7 +50,7 @@ $border-color: #ddd;
     }
   }
 
-  #tomatoList{
+  #tomatoList---Reserved{
     margin-top: 16px;
     border-top: 1px solid $border-color;
 
@@ -72,6 +72,37 @@ $border-color: #ddd;
         }
         .jobDetail{
           color: #000;
+        }
+      }
+    }
+  }
+
+  #tomatoList{
+    margin-top: 16px;
+    border-top: 1px solid $border-color;
+    .perDay{
+      padding-top: 8px;
+      .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .date{
+          color: #999;
+          font-size: 16px;
+        }
+        .constText{
+          color: #666;
+          font-size: 12px;
+        }
+      }
+      .tomatoDetail{
+        margin-top:4px;
+        .period{
+          color: #999;
+        }
+        .jobDetail{
+          color: #222;
+          margin-left: 4px;
         }
       }
     }

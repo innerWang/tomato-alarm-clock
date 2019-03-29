@@ -36,7 +36,7 @@ class HandleTomato extends Component {
 
   abortTomato =  ()=> {
     this.updateTomatoDetail({aborted: true})
-    // document.title = '番茄闹钟';
+     document.title = '番茄闹钟';
   }
 
   onFinish = ()=>{

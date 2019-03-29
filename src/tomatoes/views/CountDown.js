@@ -26,24 +26,22 @@ class CountDown extends React.Component{
     return formatTime(this.state.curtime)
   }
 
-  componentWillMount(){
+  componentDidMount(){
     timerId = setInterval(()=>{
-      this.setState({curtime: this.state.curtime-1})
+      this.setState({curtime: this.state.curtime-1});
+      document.title = `${this.time}-番茄闹钟`;
       if( this.state.curtime < 0){
         this.setState({curtime: 0})
         clearInterval(timerId)
         this.props.finish();
-      //  document.title = '番茄闹钟';
+        document.title = '番茄闹钟';
       }
     },1000)
   }
 
   componentWillUnmount(){
     clearInterval(timerId)
-  }
-
-  componentDidUpdate(){
-    //document.title = `${this.time}-番茄闹钟`;
+    console.log('clear timer.....')
   }
 
   render(){

@@ -1,10 +1,10 @@
-1. 使用 history 包 以及 Router 组件控制URL 
+### 1. 使用 history 包 以及 Router 组件控制URL 
 
-2. 使用 axios 库，发送ajax请求
+### 2. 使用 axios 库，发送ajax请求
 
 [axios](https://github.com/axios/axios)
 
-3. 使用 classnames 库 ，提供动态css样式功能
+### 3. 使用 classnames 库 ，提供动态css样式功能
 
 ```js
   import classNames from 'classnames';
@@ -19,11 +19,11 @@
    <div id="todoItem" className={itemClass}>xxxxx</div>
 ```
 
-4. ES6 class的取值函数(getter)和存值函数(setter)
+### 4. ES6 class的取值函数(getter)和存值函数(setter)
 使用 get 和 set 关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。
 
 
-5. 使用Hooks 与 setInterval的问题
+### 5. 使用Hooks 与 setInterval的问题
 
 先看一个示例
 ```js
@@ -69,3 +69,30 @@ function App(){
 但是需要注意的是，unmount再mount的次数多了，会导致时间误差较大。
 
 
+### 6. lodash 
+
+[lodash ：一个JavaScript的实用工具库](http://lodash.think2011.net/)
+
+```js
+// 安装
+yarn add lodash
+```
+1. _.groupBy : 返回一个对象，会将传入的数组进行分组，key为iteratee的处理结果，value是产生key的元素数组。
+
+
+### 7. JavaScript的日期库
+1. date-fns : 轻量级
+```js
+// 安装
+yarn add date-fns
+```
+
+2. Moment.js
+
+
+### 8. setState的执行机制
+在react的生命周期和合并事件(_processPendingState())中，react仍处于更新机制。此时无论调用多少次setState，都不会执行更新，而是将要更新的state存入 _pendingStateQueue，将要更新的组件存入dirtyComponent。
+
+由执行机制来看，setState本身并不是异步的，而是如果在调用setState时，若react正处于更新过程，则当前更新会被暂存，等上一次更新执行后再执行，给人一种异步的假象。
+
+根据JS的异步机制，会将异步函数先暂存，等所有的同步代码都执行完毕再执行，即若使用了setInterval，则其回调函数会在上一次更新已经执行完毕时执行，此时若在回调中调用setState，则会立刻更新结果，执行渲染。
