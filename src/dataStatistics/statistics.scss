@@ -5,12 +5,39 @@
     border: 1px solid #ddd;
     li{
       flex:1;
-      text-align: center;
       border: 1px solid #ddd;
+      .topic{
+        padding: 8px 8px 0 8px ;
+      }
+      .graph{
+        position: relative;
+        margin-top: 4px;
+        .text{
+          position: absolute;
+          left: 8px;
+          >div:first-child{
+            color: #999;
+            font-size: 12px;
+          }
+          >div:nth-child(2){
+            color: #666;
+            font-size: 30px;
+          }
+        }
+
+      }
     }
   }
 }
 
+
+#polygon{
+  svg{
+    height: 60px;
+    width: 240px;
+    display: block;
+  }
+}
 
 #todoHistory{
   border: 1px solid #ddd;

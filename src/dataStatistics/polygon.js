@@ -43,7 +43,7 @@ class Polygon extends React.Component{
   render(){
     return (
       <div id="polygon">
-        <svg style={{height:60,width:240}}>
+        <svg >
           <polygon fill="rgba(215,78,78,0.1)" 
                    stroke="rgba(215,78,78,0.5)" 
                    strokeWidth="1" 

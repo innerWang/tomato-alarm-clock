@@ -7,16 +7,6 @@ import TodoItemForHistory from './todoItemForHistory.js';
 
 const TabPane = Tabs.TabPane;
 
-const ItemOfTodoHistory = (props)=>{
-  const time = new Date(props.updated_at);
-  const hour = time.getHours();
-  const minute = time.getMinutes();
-  return (<div className="detail">
-    <span>{`${hour}:${minute}`}</span>
-    <span>{props.description}</span>
-  </div>)
-}
-
 class TodoHistory extends React.Component{
   get finishedTodos(){
    // console.log(this.props.todos)
@@ -57,6 +47,8 @@ class TodoHistory extends React.Component{
     let finishedListID = 0;
     let deletedListID = 0;
 
+    const weekday = ['周天','周一','周二','周三','周四','周五','周六']
+
     const finishedList = (
       <div>
         { this.finishedDates.map( d =>{
@@ -65,7 +57,7 @@ class TodoHistory extends React.Component{
               <div className="abstract"> 
                 <div className="day">
                   <span >{d}</span>
-                  <span >周x</span>
+                  <span >{weekday[new Date(d).getDay()]}</span>
                 </div>
                 <div className="count" >
                   完成了{this.dailyFinishedTodos[d].length}个任务
@@ -88,7 +80,7 @@ class TodoHistory extends React.Component{
               <div className="abstract"> 
                 <div className="day">
                   <span >{d}</span>
-                  <span >周x</span>
+                  <span >{weekday[new Date(d).getDay()]}</span>
                 </div>
                 <div className="count">
                   刪除了{this.dailyDeletedTodos[d].length}个任务
