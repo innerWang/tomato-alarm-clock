@@ -48,7 +48,8 @@
 
   >.text {
     padding: 0 28px 0 24px;
-    word-wrap: break-word; 
+    //word-wrap: break-word; 
+    word-break: break-word;
   }
 }
 
