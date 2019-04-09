@@ -1,15 +1,15 @@
 {
-  "main.css": "/tomato-alarm-clock/build/static/css/main.3d5cc0c3.chunk.css",
-  "main.js": "/tomato-alarm-clock/build/static/js/main.124fa761.chunk.js",
-  "main.js.map": "/tomato-alarm-clock/build/static/js/main.124fa761.chunk.js.map",
-  "runtime~main.js": "/tomato-alarm-clock/build/static/js/runtime~main.a9b0dcd1.js",
-  "runtime~main.js.map": "/tomato-alarm-clock/build/static/js/runtime~main.a9b0dcd1.js.map",
-  "static/css/2.75d58103.chunk.css": "/tomato-alarm-clock/build/static/css/2.75d58103.chunk.css",
-  "static/js/2.860f8d43.chunk.js": "/tomato-alarm-clock/build/static/js/2.860f8d43.chunk.js",
-  "static/js/2.860f8d43.chunk.js.map": "/tomato-alarm-clock/build/static/js/2.860f8d43.chunk.js.map",
-  "index.html": "/tomato-alarm-clock/build/index.html",
-  "precache-manifest.e24a58ebf14ac6788eca33e6362a489f.js": "/tomato-alarm-clock/build/precache-manifest.e24a58ebf14ac6788eca33e6362a489f.js",
-  "service-worker.js": "/tomato-alarm-clock/build/service-worker.js",
-  "static/css/2.75d58103.chunk.css.map": "/tomato-alarm-clock/build/static/css/2.75d58103.chunk.css.map",
-  "static/css/main.3d5cc0c3.chunk.css.map": "/tomato-alarm-clock/build/static/css/main.3d5cc0c3.chunk.css.map"
+  "main.css": "/tomato-alarm-clock/static/css/main.3d5cc0c3.chunk.css",
+  "main.js": "/tomato-alarm-clock/static/js/main.6045e2ee.chunk.js",
+  "main.js.map": "/tomato-alarm-clock/static/js/main.6045e2ee.chunk.js.map",
+  "runtime~main.js": "/tomato-alarm-clock/static/js/runtime~main.48f344bc.js",
+  "runtime~main.js.map": "/tomato-alarm-clock/static/js/runtime~main.48f344bc.js.map",
+  "static/css/2.75d58103.chunk.css": "/tomato-alarm-clock/static/css/2.75d58103.chunk.css",
+  "static/js/2.d0e9efe0.chunk.js": "/tomato-alarm-clock/static/js/2.d0e9efe0.chunk.js",
+  "static/js/2.d0e9efe0.chunk.js.map": "/tomato-alarm-clock/static/js/2.d0e9efe0.chunk.js.map",
+  "index.html": "/tomato-alarm-clock/index.html",
+  "precache-manifest.46d0336a7160dfcd5ef406f86cc5bde2.js": "/tomato-alarm-clock/precache-manifest.46d0336a7160dfcd5ef406f86cc5bde2.js",
+  "service-worker.js": "/tomato-alarm-clock/service-worker.js",
+  "static/css/2.75d58103.chunk.css.map": "/tomato-alarm-clock/static/css/2.75d58103.chunk.css.map",
+  "static/css/main.3d5cc0c3.chunk.css.map": "/tomato-alarm-clock/static/css/main.3d5cc0c3.chunk.css.map"
 }

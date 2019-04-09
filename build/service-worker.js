@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/tomato-alarm-clock/build/precache-manifest.e24a58ebf14ac6788eca33e6362a489f.js"
+  "/tomato-alarm-clock/precache-manifest.46d0336a7160dfcd5ef406f86cc5bde2.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/tomato-alarm-clock/build/index.html", {
+workbox.routing.registerNavigationRoute("/tomato-alarm-clock/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
