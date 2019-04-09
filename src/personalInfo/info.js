@@ -27,9 +27,7 @@ class InfoModal extends Component{
           footer={null}
           onCancel={this.handleCancel}
         >
-          <p>姓名： xxx</p>
-          <p>姓名： xxx</p>
-          <p>姓名： xxx</p>
+          <p>姓名： {this.props.account}</p>
         </Modal> 
     )
   }

@@ -1,6 +1,6 @@
 #dataStatistics{
   padding: 16px;
-  ul{
+  >ul{
     display: flex;
     border: 1px solid #ddd;
     li{
@@ -8,6 +8,7 @@
       border: 1px solid #ddd;
       .topic{
         padding: 8px 8px 0 8px ;
+        cursor: pointer;
       }
       .graph{
         position: relative;
@@ -31,6 +32,7 @@
 }
 
 
+
 #polygon{
   svg{
     height: 60px;
@@ -40,9 +42,13 @@
 }
 
 #todoHistory{
+  display: none;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 16px;
+  &.show{
+    display: block;
+  }
   .perdate{
     display: flex;
     border: 1px solid #ddd;

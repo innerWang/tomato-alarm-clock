@@ -40,10 +40,14 @@ instance.interceptors.response.use(function (response) {
   }
   return response;
 }, function (error) {
+  console.log(error.response)
   // 响应错误处理
   if(error.response.status === 401){
     console.log('响应错误，未授权，重定向....')
     history.push('/login');
+  }else if(error.response.status === 422){
+    //alert('账号或密码错误')
+    //history.push('/login');
   }
 
   return Promise.reject(error);

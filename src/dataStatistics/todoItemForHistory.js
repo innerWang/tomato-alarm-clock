@@ -7,14 +7,17 @@ import {format} from 'date-fns';
 class TodoItemForHistory extends React.Component{
 
    updateTodo = async (param)=>{
-    const ret = await  axios.patch(`todos/${this.props.id}`,param);
+    try{
+      const ret = await  axios.patch(`todos/${this.props.id}`,param);
  //   console.log(ret.data.resource)
-    this.props.update(Object.assign({},ret.data.resource,{editEnable:false}))
+      this.props.update(Object.assign({},ret.data.resource,{editEnable:false}))
+    }catch(e){
+      throw new Error(e)
+    }
   }
 
   render(){
     let action = <span />
-
     if(this.props.type === 'finished'){
       action = (
         <div className="action">
@@ -31,7 +34,7 @@ class TodoItemForHistory extends React.Component{
     }
     return (
     <div className="detail">
-      <span>{format(new Date(this.props.updated_at),'HH : MM')}</span>
+      <span>{format(new Date(this.props.updated_at) ,'HH : mm')}</span>
       <span>{this.props.description}</span>
       {action}
     </div>)

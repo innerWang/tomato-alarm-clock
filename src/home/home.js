@@ -75,7 +75,7 @@ class Home extends Component{
     
     const ComboBox = (
       <Dropdown overlay={menu}>
-        <span style={{ marginLeft: 12 }}>
+        <span style={{ marginLeft: 12,cursor:'pointer'}}>
           {this.state.user && this.state.user.account} <Icon type="down" />
         </span>
       </Dropdown>
@@ -86,7 +86,7 @@ class Home extends Component{
         <header>
           <span className="logo">番茄闹钟</span>
           {ComboBox }
-          <InfoModal show={this.state.showModal}/>
+          <InfoModal show={this.state.showModal} account={this.state.user && this.state.user.account}/>
         </header>
         <main>
           <TomatoClock/>

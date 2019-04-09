@@ -8,6 +8,14 @@ import TodoHistory from './todoHistory.js';
 
 class DataStatistics extends React.Component{
 
+  constructor(props){
+    super(props)
+    this.state={
+      showTodoHistory: false,
+      showTomatoHistory: false
+    }
+  }
+
   get finishedTodos(){
     return this.props.todos.filter(t=> t.completed && !t.deleted)
   }
@@ -18,7 +26,7 @@ class DataStatistics extends React.Component{
     })
     return obj
   }
-
+ 
   get finishedTomatoes(){
     //console.log(this.props.tomatoes)
     return this.props.tomatoes.filter( t => t.description && t.ended_at && !t.aborted)  
@@ -32,12 +40,39 @@ class DataStatistics extends React.Component{
     return obj
   }
 
+  clickHistory = (e)=>{
+    switch(e.target.innerText){
+      case '任务历史':
+        this.setState({showTodoHistory: !this.state.showTodoHistory})
+        break;
+      case '番茄历史':
+        break;
+      default:break;
+    }
+  }
+
   render(){
     return (
       <div id="dataStatistics">
         <ul>
-          <li>统计</li>
-          <li>目标</li>
+          <li>
+            <div className="topic">统计</div>
+            <div className="graph">
+              <div className="text">
+                <div>一周累计</div>
+                <div>0</div> 
+              </div> 
+            </div>
+          </li>
+          <li>
+            <div className="topic">目标</div>
+            <div className="graph">
+              <div className="text">
+                <div>今日目标</div>
+                <div>0/8</div> 
+              </div> 
+            </div>
+          </li>
           <li>
             <div className="topic">番茄历史</div>
             <div className="graph">
@@ -49,7 +84,7 @@ class DataStatistics extends React.Component{
             </div>
           </li>
           <li>
-            <div className="topic">任务历史</div>
+            <div className="topic" onClick={this.clickHistory}>任务历史</div>
             <div className="graph">
               <div className="text">
                 <div>累计完成任务</div>
@@ -59,7 +94,7 @@ class DataStatistics extends React.Component{
             </div>
           </li>
         </ul>
-        <TodoHistory />
+        <TodoHistory show={this.state.showTodoHistory}/>
       </div>
     )
   }

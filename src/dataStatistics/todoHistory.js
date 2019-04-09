@@ -4,23 +4,27 @@ import _ from 'lodash';
 import {format} from 'date-fns';
 import { Tabs } from 'antd';
 import TodoItemForHistory from './todoItemForHistory.js';
+import classNames from 'classnames';
 
 const TabPane = Tabs.TabPane;
 
 class TodoHistory extends React.Component{
   get finishedTodos(){
-   // console.log(this.props.todos)
-    return this.props.todos.filter( t => t.completed && !t.deleted);
+    return this.props.todos.filter( t => t.completed && !t.deleted).sort((a,b)=>
+      (Date.parse(b.completed_at) -Date.parse(a.completed_at))
+    );
   }
 
   get deletedTodos(){
-    return this.props.todos.filter( t => t.deleted);
+    return this.props.todos.filter( t => t.deleted).sort((a,b)=>
+      (Date.parse(b.updated_at) -Date.parse(a.updated_at))
+    );
   }
 
   get dailyFinishedTodos(){
     //得到按照日期分类的对象
     const obj= _.groupBy(this.finishedTodos,(t)=>{
-      return format(new Date(t.updated_at), 'YYYY-MM-DD')
+      return format(new Date(t.completed_at), 'YYYY-MM-DD')
     })
     return obj
   }
@@ -95,9 +99,13 @@ class TodoHistory extends React.Component{
       </div>
     )
 
+    const todoHistoryClass = classNames({
+      'todoHistory': true,
+      'show':this.props.show
+    });
 
     return (
-      <div className="todoHistory" id="todoHistory">
+      <div className={todoHistoryClass} id="todoHistory">
         <Tabs defaultActiveKey="1" type="card">
           <TabPane tab="已完成的任務" key="1">
             {finishedList}

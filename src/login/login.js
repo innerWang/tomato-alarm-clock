@@ -15,6 +15,7 @@ class Login extends Component {
     this.state = {
       userName:'',
       password:'',
+      errorMessage:''
     }
   }
   
@@ -24,11 +25,6 @@ class Login extends Component {
     this.setState(newState);
     
   }
-
-  componentDidUpdate(){
-    //console.log(this.state)
-  }
-
 
   submit = async ()=>{
     const { userName,password } = this.state;
@@ -40,11 +36,18 @@ class Login extends Component {
           password
         }
       );
-      
+      this.setState({
+        errorMessage:''
+      })
       console.log('login success....')
       history.push('/')
     } catch (error) {
-      throw new Error(error)
+      //console.log(error.response)  
+      console.log('login error....')
+      this.setState({
+        errorMessage:error.response.data.errors
+      })
+      history.push('/login');
     }
   }
 
@@ -54,6 +57,7 @@ class Login extends Component {
     return (
       <div id="login">
         <h1>番茄闹钟</h1>
+        <div className="errorText">{this.state.errorMessage}</div>
         <Input
           placeholder="name"
           value={userName}
