@@ -1,8 +1,70 @@
 ### 1. 使用 history 包 以及 Router 组件控制URL 
 
+react-router 在4.x版本后已经将自带的history独立成一个history 模块了.
+
+[history](https://github.com/ReactTraining/history)
+[API-history](https://reacttraining.com/react-router/core/api/history)
+
+history会知道如何监听浏览器地址栏的变化，解析url转化为location对象，然后router使用它匹配到路由，最后可以正确地渲染对应的组件。
+
+#### 1.1 createBrowserHistory
+Browser history是由react Router创建浏览器应用推荐的history，主要使用了HTML5的history API.
+
+
 ### 2. 使用 axios 库，发送ajax请求
 
 [axios](https://github.com/axios/axios)
+
+axios是一个可用在浏览器和node.js中的基于promise的HTTP库。
+#### 2.1. 特性如下：
+* 在浏览器中创建 XMLHttpRequest对象
+* 在node.js中创建 http请求
+* 支持 Promise API
+* 拦截请求和响应
+* 转换请求和响应数据
+* 取消请求
+* 自动转换JSON数据
+* 客户端支持XSRF(CSRF 跨站请求伪造)防御
+
+#### 2.2. 使用
+##### 2.2.1 `axios.create([config])`创建一个实例
+```js
+const instance = axios.create({
+  baseURL: 'https://some-domain.com/api/',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+```
+##### 2.2.2 实例对应的方法
+* `instance.request(config)`
+* `instance.get(url[, config])`  /  `instance.delete(url[, config])` / `instance.head(url[, config])` / `instance.option(url[, config])`
+* `instance.post(url[, data[, config]])` /`instance.put(url[, data[, config]])` / `instance.patch(url[, data[, config]])`
+* `instance.getUri([config])`
+
+##### 2.2.3 使用拦截器 Interceptors
+可以在请求或响应在被then或者catch处理之前拦截他们。
+
+```js
+// Add a request interceptor
+instance.interceptors.request.use(function (config) {
+    // Do something before request is sent
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
+
+// Add a response interceptor
+instance.interceptors.response.use(function (response) {
+    // Do something with response data
+    return response;
+  }, function (error) {
+    // Do something with response error
+    return Promise.reject(error);
+  });
+```
+
+
 
 ### 3. 使用 classnames 库 ，提供动态css样式功能
 
@@ -81,11 +143,13 @@ yarn add lodash
 
 
 ### 7. JavaScript的日期库
-1. date-fns : 轻量级
+1. [date-fns](https://date-fns.org/docs/Getting-Started) : 轻量级，类似日期版的lodash.
+
 ```js
 // 安装
 yarn add date-fns
 ```
+使用 format 对日期进行格式化，或者其他的函数对日期进行处理。
 
 2. Moment.js
 
@@ -96,3 +160,7 @@ yarn add date-fns
 由执行机制来看，setState本身并不是异步的，而是如果在调用setState时，若react正处于更新过程，则当前更新会被暂存，等上一次更新执行后再执行，给人一种异步的假象。
 
 根据JS的异步机制，会将异步函数先暂存，等所有的同步代码都执行完毕再执行，即若使用了setInterval，则其回调函数会在上一次更新已经执行完毕时执行，此时若在回调中调用setState，则会立刻更新结果，执行渲染。
+
+
+### 9. 部署
+使用 gh-pages, 部署完成后线上仓库会多出一个gh-pages分支，里面存放的是我们打包编译完成之后的静态文件。
